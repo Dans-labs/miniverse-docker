@@ -3,9 +3,9 @@ version: '2'
 services:
     postgres:
         build:  postgresql/
-        container_name: db
+        container_name: postgres
         ports:
-        - "5435:5432"
+        - "5439:5432"
         volumes:
         - ./data/db:/var/lib/postgresql/data
 
@@ -13,6 +13,6 @@ services:
         build:  miniverse/
         container_name: miniverse
         ports:
-        - "8086:8000"
-        volumes:
-        - ./data/miniverse:/var/lib
+        - "8086:5000"
+        depends_on:
+          - postgres
